@@ -1,0 +1,290 @@
+<!-- Mike website
+THIS PAGE WEBSITE IS RESPONSIVE AND ANY ONE ACCORDING TO HIS/HER
+DEVICE CAN USE THIS WEBSITE -->
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  /* Default styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+  /* background: url(./358517802_225280017123732_8432697465064067151_n.jpg); */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#myVideo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.buttons {
+  position: fixed;
+  top: 0%; /* Adjust the top position */
+  right: 0%; /* Adjust the right position */
+  background-color: #000;
+  padding: 10px; /* Increase padding for better spacing */
+  border-radius: 0px;
+}
+
+#myBtn {
+  width: 100px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: gold;
+  color: indigo;
+  font-weight: 800;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 10px 0px aliceblue;
+}
+
+#myBtn:hover {
+  background: aliceblue;
+  color: indigo;
+  box-shadow: inset 0px 0px 10px 0px gold;
+}
+
+.myBtn {
+  width: 100px;
+  font-size: 13px;
+  padding: 10px;
+  border: none;
+  background: gold;
+  color: indigo;
+  font-weight: 800;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 10px 0px aliceblue;
+}
+
+.myBtn:hover {
+  background: aliceblue;
+  color: indigo;
+  box-shadow: inset 0px 0px 10px 0px gold;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  text-align: center;
+  color: aliceblue;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  color: red;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.heads{
+    font-family:'Courier New';
+    color: gold;
+    text-align: center;
+}
+
+.download{
+    width: 200px;
+    height: 200px;
+}
+
+.hide{
+  display: none;
+}
+
+.tsapp:hover+.hide{
+  display: block;
+  transition-delay: 5s;
+  animation-delay: 5s;
+}
+
+
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  #myVideo {
+    position: relative;
+    min-width: auto;
+    min-height: auto;
+    width: 100%; /* Video width will be 100% of the viewport */
+    height: auto; /* Video height will adjust proportionally */
+  }
+
+  .buttons {
+    position: static;
+    margin-top: 20px; /* Add some spacing between video and buttons */
+    text-align: center; /* Center-align buttons on smaller screens */
+    display: flex; /* Use flexbox to arrange buttons in a row */
+    background: #000;
+    border-radius: 0px;
+    justify-content: space-between; /* Add space between buttons */
+  }
+
+  .buttons button {
+    flex: 1; /* Make buttons grow to fill available space */
+    margin: 0 5px; /* Add margin between buttons */
+  }
+
+   footer {
+    position: fixed;
+    margin-top: 670px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    transition: all 0.5s ease;
+  }
+
+  footer.minimized {
+    min-width: 100%;
+    background-color: rgb(15, 7, 7);
+    min-height: 300px;
+    margin-top: 26%;
+  }
+
+  footer.minimized .fata{ 
+    background-color: aliceblue;
+    border-radius: 50%;
+  }
+
+  footer h1 {
+    text-align: center;
+    color: aliceblue;
+  }
+
+  footer img {
+    width: 200px;
+    height: 200px;
+    margin: 9px;
+    cursor: pointer;
+  }
+
+  .fata{
+    width: 100px;
+    height: 100px;
+  }
+  
+}
+  </style>
+  </head>
+  <body>
+  
+  <video autoplay unmuted loop controls id="myVideo">
+    <source src="./yodha-full-movie.mp4" type="video/mp4">
+  </video>
+  
+      <div class="buttons">
+    <button id="myBtn" onclick="myFunction()">Play</button><br><br>
+    <button class="myBtn" onclick="openNav()" href="./mike.mp4" download>DOWNLOAD</button>
+  </div>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <h3 class="heads">SEE HOW TO DOWNLOAD ON OUR WEBSITE</h3><br><br>
+    <h3 class="heads">CLICK ON THE MOVIE/VIDEO</h3><br><br>
+    <h3 class="heads">CHECK A THREE DOTS ICON</h3><br><br>
+    <h3 class="heads">CLICK ON IT THEN DOWNLOAD</h3>
+    <img src="./download.png" class="download">
+  </div>
+
+  <footer id="footer">
+
+
+    <img src="./fata.png" class="fata"><br>
+    <h1>DJ MIKE HERO</h1>
+
+    <img src="./WhatsApp.png" class="tsapp" alt="whatsapp">
+    <h2 class="hide">+250 788 267 156</h2>
+
+    <a href="https://www.instagram.com/stories/dj_mike_hero1/3353907391848856684?igsh=czBhZGRodjRvazZ0">
+    <img src="./insta.png" alt="instagram">
+    </a> 
+
+    <a href="">
+    <img src="./fb.png" alt="facebook">
+    </a> 
+
+    <a href="https://youtu.be/TiRFiyY1Oyo?si=PmMyHMIjtJZEhzah">
+    <img src="./youtube.png" alt="youtube">
+    </a>
+
+  </footer>
+
+  
+  <script>
+    var video = document.getElementById("myVideo");
+    var btn = document.getElementById("myBtn");
+
+    function myFunction() {
+  if (video.paused) {
+    video.play();
+    btn.innerHTML = "Pause";
+  } else {
+    video.pause();
+    btn.innerHTML = "Play";
+  }
+}
+
+        // Get the footer element
+  var footer = document.getElementById("footer");
+
+// Get the "fata" image element
+var fataImg = footer.querySelector("img");
+
+// Toggle class on footer when "fata" image is clicked
+fataImg.addEventListener("click", function() {
+  footer.classList.toggle("minimized");
+});
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "450px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+        </script>
+  
+  </body>
+  </html>
