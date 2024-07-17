@@ -1,99 +1,366 @@
-To achieve the desired functionality and styles for your dual login/signup form with animations, we'll make several adjustments and additions to your HTML, CSS, and JavaScript. Here's how you can modify and enhance your existing code:
+To achieve the desired functionality with your HTML, CSS, and JavaScript, you need to ensure that the transitions between the sign-up and sign-in forms are smooth and the overlay panels switch content appropriately. Here's an updated version of your code:
 
-### 1. HTML Structure
-Your HTML structure looks good for the dual forms and overlay. No major changes are needed here.
+### HTML File
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in || Sign up form</title>
+     <!-- font awesome icons -->
+     <link rel="stylesheet" href="../fontawesome-free-6.2.1-web/css/all.css">
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
 
-### 2. CSS Styles
-You already have extensive CSS styles defined. We'll enhance them to include animations and transitions for switching between the sign-in and sign-up forms and their respective overlays.
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <div class="infield">
+                    <input type="text" placeholder="Name" required>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="email" required>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Password" required>
+                    <i id="eye" class="fas fa-eye"></i>
+                    <label></label>
+                </div>
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="email" required>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" name="password" placeholder="Password" minlength="8" maxlength="16" required>
+                    <i id="eye" class="fas fa-eye"></i>
+                    <label></label>
+                </div>
+                <a href="#" class="forgot">Forgot your password?</a>
+                <button>Log In</button>
+            </form>
+        </div>
+        <div class="overlay-container" id="overlayCon">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button id="signUp">Create an account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- js code -->
+    <script src="./script.js"></script>
 
-#### Additional CSS Styles
+</body>
+</html>
+```
 
+### CSS File
 ```css
-/* Adjustments and additions for animations */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-/* Ensure that both forms are initially hidden */
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --linear-grad: linear-gradient(to right, #141E30, #243B55);
+    --grad-clr1: #141E30;
+    --grad-clr2: #243B55;
+}
+
+body {
+    height: 100vh;
+    background: #f6f5f7;
+    display: grid;
+    place-content: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    position: relative;
+    width: 850px;
+    height: 500px;
+    background: #fff;
+    box-shadow: 25px 30px 55px #5557;
+    border-radius: 13px;
+    overflow: hidden;
+}
+
 .form-container {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.6s ease-in-out;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    padding: 8px 40px;
+    transition: all 0.6s ease-in-out;
 }
 
-/* Show only the sign-in form initially */
-.sign-in-container {
-    opacity: 1;
-    pointer-events: auto;
+.sign-up-container{
+    left: 100%;
+    opacity: 0;
+    z-index: 1;
 }
 
-/* Overlay and animation adjustments */
-.overlay-container {
-    transform: translateX(0%);
+.sign-in-container{
+    left: 0;
+    opacity: 1;
+    z-index: 2;
 }
 
-.overlay-left {
-    transform: translateX(-100%);
+.container.signup-mode .sign-up-container{
+    left: 0;
+    opacity: 1;
+    z-index: 5;
 }
 
-.overlay-right {
-    transform: translateX(0%);
+.container.signup-mode .sign-in-container{
+    left: -100%;
+    opacity: 0;
+    z-index: 1;
 }
 
-/* Animation for form container switching */
-.container.signup-mode .sign-in-container {
-    opacity: 0;
-    pointer-events: none;
+form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 50px;
 }
 
-.container.signup-mode .sign-up-container {
-    opacity: 1;
-    pointer-events: auto;
+h1{
+    color: var(--grad-clr1);
 }
 
-/* Animation for overlays switching */
-.container.signup-mode .overlay-container {
-    transform: translateX(-100%);
+.social-container{
+    margin: 20px 0px;
+}
+
+.social-container a{
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 5px;
+    height: 40px;
+    width: 40px;
+}
+
+.social-container a:hover{
+    color: #fff;
+    background-color: var(--grad-clr1);
+}
+
+span{
+    font-size: 12px;
+}
+
+.infield{
+    position: relative;
+    margin: 8px 0px;
+    width: 100%;
+}
+
+.input{
+    width: 100%;
+    padding: 12px 15px;
+    background: #f3f3f3;
+    border: none;
+    outline: none;
+}
+
+label{
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%);
+    width: 100%;
+    height: 2px;
+    background: var(--linear-grad);
+    transition: 0.3s;
+}
+
+input{
+    width: 100%;
+    padding: 13px;
+    outline: none;
+    color: var(--grad-clr1);
+    /* border: none; */
+}
+
+/* showing psd  */
+
+    
+.infield i{
+    position: absolute;
+    right: 15px;
+    color: var(--grad-clr1);
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-color: #fff;
+    padding: 8px;
+}
+
+.infield i.active::before{
+    color: var(--grad-clr1);
+    content: "\f070";
+}
+
+.infield i:hover{
+    color: #001;
+}
+
+
+a{
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0px;
+}
+
+a.forgot:hover{
+    padding-bottom: 3px;
+    transition: .3s ease;
+    transition-duration: 1s;
+    border-bottom: 2px solid var(--grad-clr2);
+}
+
+button{
+    border-radius: 10px;
+    border: 1px solid var(--grad-clr2); 
+    background: var(--grad-clr2);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.form-container button{
+    margin-top: 17px;
+    transition: 80ms ease-in;
+}
+
+.form-container button:hover{
+    background: #fff;
+    color: var(--grad-clr1);
+}
+
+.overlay-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.overlay{
+    background: var(--linear-grad);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left{
+    transform: translateX(-20%);
+}
+
+.overlay-right{
+    right: 
+
+0;
+    transform: translateX(0);
+}
+
+.container.signup-mode .overlay-container{
+    transform: translateX(-100%);
+}
+
+.container.signup-mode .overlay{
+    transform: translateX(50%);
+}
+
+.container.signup-mode .overlay-left{
+    transform: translateX(0%);
+}
+
+.container.signup-mode .overlay-right{
+    transform: translateX(20%);
 }
 ```
 
-### 3. JavaScript for Functionality
-You need JavaScript to handle the switching between sign-in and sign-up modes when clicking the respective buttons.
-
-#### JavaScript Code
-
+### JavaScript File (script.js)
 ```javascript
-// Select relevant elements
-const signUpButton = document.querySelector('#overlayBtn');
-const signInButton = document.querySelector('.overlay-panel.overlay-left button');
-const container = document.querySelector('.container');
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('container');
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
 
-// Add event listeners for buttons
-signUpButton.addEventListener('click', () => {
-    container.classList.add('signup-mode');
-});
+    signUpButton.addEventListener('click', () => {
+        container.classList.add('signup-mode');
+    });
 
-signInButton.addEventListener('click', () => {
-    container.classList.remove('signup-mode');
+    signInButton.addEventListener('click', () => {
+        container.classList.remove('signup-mode');
+    });
 });
 ```
 
-### Explanation of JavaScript Code
-
-- **Event Listeners**: 
-  - `signUpButton`: When clicked, it adds the `signup-mode` class to the container, triggering the CSS animations to switch to the sign-up form.
-  - `signInButton`: When clicked, it removes the `signup-mode` class, returning to the sign-in form.
-
-### Functionality Overview
-- **Initial Setup**: 
-  - The sign-up form is initially hidden (`opacity: 0`).
-  - Only the sign-in form is visible and active.
-  
-- **Switching Between Forms**: 
-  - Clicking "Sign Up" button on the initial screen slides the sign-in form out to the left and slides the sign-up form into view from the right.
-  
-- **CSS Transitions**: 
-  - Uses CSS transitions (`transition: opacity 0.6s ease-in-out;`) to animate the opacity change of the forms.
-  
-- **Overlay Animation**: 
-  - Clicking the respective buttons (`Sign In` or `Sign Up`) also animates the overlay to slide to the left or right accordingly.
-
-### Summary
-By integrating these adjustments into your existing code, you'll achieve a smooth transition and animation between the sign-in and sign-up forms, enhancing both the functionality and visual appeal of your dual login/signup interface.
+This code ensures that when you click the "Create an account" button, the overlay slides to reveal the "Welcome Back!" message and sign-in form, and vice versa. The transitions are smooth and consistent with the animation you desire.
